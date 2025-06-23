@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Le son qui réveille les morts</title>
+  
+  <!-- Police ésotérique / manuscrite -->
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet" />
+  
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a0b27, #3d2c52);
+      color: #c9b9d2;
+      font-family: 'Cormorant Garamond', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 30px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    h1 {
+      font-family: 'Uncial Antiqua', cursive;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      color: #d9c7f9;
+      text-shadow:
+        0 0 8px #a67cff,
+        0 0 20px #8b5fbf;
+      letter-spacing: 0.1em;
+    }
+    input[type="text"] {
+      width: 320px;
+      padding: 0.7rem 1rem;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      border: 2px solid #7a57a3;
+      background: rgba(58, 42, 75, 0.8);
+      color: #e6dbff;
+      box-shadow:
+        inset 0 0 8px #a281ff,
+        0 0 10px #7a57a3;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Cormorant Garamond', serif;
+      outline: none;
+    }
+    input[type="text"]:focus {
+      border-color: #d2b8ff;
+      box-shadow:
+        inset 0 0 12px #c8a6ff,
+        0 0 14px #d9baff;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #6f42c1, #a182ff);
+      color: #fff;
+      cursor: pointer;
+      box-shadow:
+        0 0 12px #a182ff,
+        0 0 20px #6f42c1;
+      font-family: 'Cormorant Garamond', serif;
+      transition: background 0.4s ease;
+    }
+    button:hover {
+      background: linear-gradient(45deg, #7e53db, #b49cff);
+      box-shadow:
+        0 0 16px #b49cff,
+        0 0 24px #7e53db;
+    }
+    #message {
+      margin-top: 2rem;
+      font-weight: 600;
+      font-size: 1.15rem;
+      white-space: pre-line;
+      min-height: 8em;
+      color: #d4c4ff;
+      text-shadow: 0 0 8px #9a8fd4;
+    }
+    audio {
+      margin-top: 2.5rem;
+      outline: none;
+      filter: drop-shadow(0 0 4px #a182ff);
+      border-radius: 10px;
+      background: rgba(50, 30, 80, 0.6);
+      padding: 6px 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Le son qui réveille les morts</h1>
+  
+  <input type="text" id="answer" placeholder="Tape ta réponse ici" autocomplete="off" />
+  <br />
+  <button onclick="checkAnswer()">Valider</button>
+
+  <div id="message"></div>
+
+  <audio id="audioPlayer" controls>
+    <source src="son.mp3" type="audio/mpeg" />
+    Ton navigateur ne supporte pas l'élément audio.
+  </audio>
+
+  <script>
+    function checkAnswer() {
+      const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+      const correctAnswer = "turn me on dead man";
+      const messageEl = document.getElementById('message');
+      const audio = document.getElementById('audioPlayer');
+
+      if (userAnswer === correctAnswer) {
+        messageEl.style.color = "#bcaaff";
+        messageEl.textContent = 
+`“Turn me on, dead man.”  
+Mais il ne s’appelait pas Paul, ici.  
+Et pourtant, il est mort lui aussi.  
+Effacé des listes. Rayé des murs.  
+Tu le croiseras peut-être.  
+Si tu trouves  
+la porte sans poignée, celle qui ne mène nulle part.  
+Salle 0.`;
+        audio.play();
+      } else {
+        messageEl.style.color = "#ff9f9f";
+        messageEl.textContent = "Mauvaise réponse, essaie encore.";
+      }
+    }
+  </script>
+</body>
+</html>
